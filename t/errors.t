@@ -38,7 +38,7 @@ my @tests = (
     },
     {
         opts => [files => ['a.txt'], format => 'NNN'],
-        expected_error => qr/Unknown 'format'/, # TODO
+        expected_error => qr/Unknown value for 'format' opt: 'NNN'/,
     },
     {
         opts => [files => ['a.txt'], format_sub => 'sub'],

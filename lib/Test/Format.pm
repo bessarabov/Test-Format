@@ -45,7 +45,7 @@ sub test_format {
     die "Must specify 'format' or 'format_sub'" if !defined($format) && !defined($format_sub);
     die "Can't specify both 'format' and 'format_sub'" if defined($format) && defined($format_sub);
 
-    die "Unknown 'format'" if defined($format) && $format ne 'pretty_json';
+    die "Unknown value for 'format' opt: '$format'" if defined($format) && $format ne 'pretty_json';
     die "'format_sub' must be sub" if defined($format_sub) && ref($format_sub) ne 'CODE';
 
     my $sub = defined($format) && $format eq 'pretty_json' ? \&_pretty_json : $format_sub;
