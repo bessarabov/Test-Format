@@ -1,6 +1,47 @@
 package Test::Format;
 
+# ABSTRACT: test files if they match format
+
 =encoding UTF-8
+
+=head1 SYNOPSIS
+
+In t/format.t file:
+
+    use strict;
+    use warnings FATAL => 'all';
+
+    use Test::More tests => 1;
+    use Test::Format;
+
+    test_format(
+        files => [
+            'data/countries.json',
+        ],
+        format => 'pretty_json',
+    );
+
+It will check file 'data/countries.json' that it is in pretty json format.
+
+And you can prettify all the files that test checks if you run test with
+SELF_UPDATE environment variable:
+
+    SELF_UPDATE=1 prove t/format.t
+
+You can also write custom format checker:
+
+    test_format(
+        files => [
+            'data/file.asdf',
+        ],
+        format_sub => sub {
+            my ($content) = @_;
+
+            # Your custom code that creates pretty $expected_content from ugly $content
+
+            return $expected_content;
+        },
+    );
 
 =cut
 
