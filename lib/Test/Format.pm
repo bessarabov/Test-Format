@@ -99,7 +99,7 @@ sub _read_file {
 
     my $content = '';
 
-    open FH, '<', $file_name;
+    open FH, '<', $file_name or die "Can't open < $file_name for reading: $!";
 
     while (<FH>) {
         $content .= $_;
@@ -111,7 +111,7 @@ sub _read_file {
 sub _write_file {
     my ($file_name, $content) = @_;
 
-    open FH, '>', $file_name;
+    open FH, '>', $file_name or die "Can't open $file_name for writing: $!";
 
     print FH $content;
 
