@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 use utf8;
 use open qw(:std :utf8);
 
-use Test::More;
+use Test::More tests => 9;
 use Test::Format;
 
 my @tests = (
@@ -53,6 +53,3 @@ foreach my $test (@tests) {
 
     like($@, $test->{expected_error}, $test->{expected_error});
 }
-
-# TODO
-done_testing();
