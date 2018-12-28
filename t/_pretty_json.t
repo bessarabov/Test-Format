@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 use utf8;
 use open qw(:std :utf8);
 
-use Test::More tests => 8;
+use Test::More tests => 6;
 use Test::Format;
 
 my @tests = (
@@ -41,9 +41,7 @@ foreach my $test (@tests) {
 }
 
 my @not_jsons = (
-    'asdf',
-    '"asdf"',
-    '8',
+    '"asdf',
     '{]',
 );
 
