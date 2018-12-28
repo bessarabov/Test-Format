@@ -10,7 +10,7 @@ use Test::Format;
 my @tests = (
     {
         opts => [],
-        expected_error => qr/Must specifgy opts/,
+        expected_error => qr/Must specify opts/,
     },
     {
         opts => [1],

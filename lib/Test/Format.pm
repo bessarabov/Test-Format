@@ -98,7 +98,7 @@ The value of `format_sub` must be reference to a sub.
 sub test_format {
     my (@opts) = @_;
 
-    die 'Must specifgy opts' if scalar(@opts) == 0;
+    die 'Must specify opts' if scalar(@opts) == 0;
     die 'There must be key-value pairs' if scalar(@opts) % 2;
 
     my %opts = @opts;
