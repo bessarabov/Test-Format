@@ -67,7 +67,8 @@ specified format.
 
     test_format(
         files => [
-            'data/countries.json',
+            'data/cities/*.json',
+            'data/countries/*.json',
         ],
         format => 'pretty_json',
     );
@@ -91,7 +92,23 @@ wildcard characters in file names (internaly it is implemented with the `glob` f
 The value of `format` must be string. Now the only valid value is
 'pretty_json'. Maybe in the future there some other values will be added.
 
-The value of `format_sub` must be reference to a sub.
+The value of `format_sub` must be reference to a sub. This sub gets contents of every
+file the test checks and it must return the prettified version of the content. The
+$content that sub gets is chars, not bytes.
+
+	sub {
+		my ($content) = @_;
+
+		...
+
+		return $expected_content;
+	}
+
+Sub test_format behaviour depends of the environment variable SELF_UPDATE.
+If it is not set, or have a false value, the sub just cheks all the files.
+If the variable SELF_UPDATE is set to a true value the sub will fix the
+files that do not have expected content - it will write expected content to
+the files.
 
 =cut
 
@@ -189,5 +206,19 @@ sub _write_file {
 
     return 1;
 }
+
+=head1 SOURCE CODE
+
+The source code for this module is hosted on GitHub
+L<https://github.com/bessarabov/Test-Format>
+
+=cut
+
+=head1 BUGS
+
+Please report any bugs or feature requests in GitHub Issues
+L<https://github.com/bessarabov/Test-Format/issues>
+
+=cut
 
 1;
