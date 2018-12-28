@@ -62,6 +62,37 @@ our @EXPORT = @EXPORT_OK;
 
 =head2 test_format
 
+Sub test_format checks all the files that are specified that they match
+specified format.
+
+    test_format(
+        files => [
+            'data/countries.json',
+        ],
+        format => 'pretty_json',
+    );
+
+or
+
+    test_format(
+        files => [
+            $file_name,
+        ],
+        format_sub => \&prettifier,
+    );
+
+You must specify `files` option and one of two options:
+`format` or `format_sub`.
+
+Option `files` is a ARRAYREF with list of files to be checked. If you specify relative
+path it it relative of how you run your test, not the position of the test. You can use
+wildcard characters in file names (internaly it is implemented with the `glob` function).
+
+The value of `format` must be string. Now the only valid value is
+'pretty_json'. Maybe in the future there some other values will be added.
+
+The value of `format_sub` must be reference to a sub.
+
 =cut
 
 sub test_format {
