@@ -96,13 +96,13 @@ The value of `format_sub` must be reference to a sub. This sub gets contents of 
 file the test checks and it must return the prettified version of the content. The
 $content that sub gets is chars, not bytes.
 
-	sub {
-		my ($content) = @_;
+    sub {
+        my ($content) = @_;
 
-		...
+        ...
 
-		return $expected_content;
-	}
+        return $expected_content;
+    }
 
 Sub test_format behaviour depends of the environment variable SELF_UPDATE.
 If it is not set, or have a false value, the sub just cheks all the files.
