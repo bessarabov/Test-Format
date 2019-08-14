@@ -17,11 +17,5 @@ jobs:
     - name: Docker pull base image
       run: docker pull perl:5.30.0
 
-    - name: Build docker image
-      run: docker build . --tag test-format:${{ github.sha }}
-
     - name: Run test in t/
-      run: docker run --rm test-format:${{ github.sha }} prove -l t/
-
-    - name: Run tests in xt/
-      run: docker run --rm test-format:${{ github.sha }} prove -l xt/
+      run: docker run --rm --volume=`pwd`/lib/:/app/lib/ --volume=`pwd`/t/:/app/t/ perl:5.30.0 sh -c 'cd /app/; prove -l t/'

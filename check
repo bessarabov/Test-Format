@@ -1,1 +1,1 @@
-docker run --rm -it --volume=`pwd`/lib/:/app/lib/ --volume=`pwd`/t/:/app/t/ test-format prove -l t/
+docker run --rm -it --volume=`pwd`/lib/:/app/lib/ --volume=`pwd`/t/:/app/t/ perl:5.30.0 sh -c 'cd /app/; prove -l t/
