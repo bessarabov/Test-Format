@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Docker pull base image
+      run: docker pull perl:5.30.0
+
+    - name: Build docker image
+      run: docker build . --tag test-format:${{ github.sha }}
+
+    - name: Run test in t/
+      run: docker run --rm test-format:${{ github.sha }} prove -l t/
+
+    - name: Run tests in xt/
+      run: docker run --rm test-format:${{ github.sha }} prove -l xt/

@@ -1,0 +1,1 @@
+docker run --rm -it --volume=`pwd`/lib/:/app/lib/ --volume=`pwd`/t/:/app/t/ test-format prove -l t/
